@@ -11,6 +11,7 @@ import java.util.Map;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.zeus.domain.Board;
 
@@ -74,4 +75,43 @@ public class HomeController {
 		return "home05";
 	}
 	
+	@GetMapping("/home0303")
+	public String home0303(Model model) {
+		Board board = new Board();
+		board.setTitle("1");
+		model.addAttribute("board",board);
+		return "home0303";
+	}
+		
+	@GetMapping("/home0202")
+	public String home0202(Model model) {
+		Board board = new Board();
+		board.setTitle("spring boot");
+		model.addAttribute("board",board);
+		return "home0202";
+	}
+	
+	//WEB-INF/view/home0901.jsp, get
+	@GetMapping("/home0901")
+	public String home0901() {
+		return "home0901";
+	}
+	
+	//WEB-INF/view/home0901.jsp, get, parameter
+	@RequestMapping("/boardjstl/search")
+	public void search(Board board, String title, Model model) {
+		log.info("search keyword = " + board);
+		log.info("search keyword title = " + title);
+		model.addAttribute("board", board);
+	}
+
+	@RequestMapping("/boardjstl/list")
+	public void list() {
+		log.info("/boardjstl/list");
+	}
+	
+	@GetMapping("/home1101")
+	public void home1101() {
+		log.info("/home1101");
+	}
 }

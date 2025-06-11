@@ -9,12 +9,11 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@NoArgsConstructor
-@AllArgsConstructor
 @Getter
 @Setter
-@ToString(exclude = "content")
-@EqualsAndHashCode(of = {"boardNo","title"})
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
 public class Board{
 	private int boardNo;
 	private String title;
