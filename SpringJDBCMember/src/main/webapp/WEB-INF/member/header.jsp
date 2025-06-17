@@ -8,12 +8,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>── USER MEMBER ──</title>
+<title>── MEMBER USER ──</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
 	<header>
-		<h1>─────── USER MEMBER ───────</h1>
+		<h1>─────── [HEADER] ───────</h1>
 	</header>
 	<hr>

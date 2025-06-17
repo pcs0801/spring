@@ -8,8 +8,8 @@
 <main>
 	<h2>── 유저 전체 목록 ──</h2>
 	<a href="/member/registerForm">▶ 유저 신규등록</a>
-	<table border="1">
-		<tr>
+	<table border="1" style='border-collapse:collapse;'>
+		<tr style='background-color: lightyellow;'>
 			<th align="center" width="60">NO</th>
 			<th align="center" width="120">ID</th>
 			<th align="center" width="120">PW</th>
@@ -26,8 +26,7 @@
 				<c:forEach var="member" items="${list}">
 					<tr>
 						<td align="center">${member.no}</td>
-						<td align="center"><a
-							href="/member/read?memberNo=${member.no}">${member.id}</a></td>
+						<td align="center"><a href="/member/read?no=${member.no}">${member.id}</a></td>
 						<td align="center">${member.pwd}</td>
 						<td align="center">${member.name}</td>
 						<td align="center"><fmt:formatDate pattern="yyyy-MM-dd HH:mm"

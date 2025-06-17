@@ -72,7 +72,7 @@ public class MemberDAO {
 				return member;
 			}
 		});
-		return results.isEmpty() ? null : results;
+		return results;
 
 	}
 

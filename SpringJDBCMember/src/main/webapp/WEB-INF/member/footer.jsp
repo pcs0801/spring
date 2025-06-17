@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <hr>
 <footer>
-	<h1>─────── USER MEMBER ───────</h1>
+	<h1>─────── [FOOTER] ───────</h1>
 </footer>
 </body>
 </html>
