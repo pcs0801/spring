@@ -1,6 +1,7 @@
 package com.zeus.controller;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.zeus.domain.Board;
+import com.zeus.domain.Member;
 
 import lombok.extern.java.Log;
 
@@ -38,12 +40,18 @@ public class BoardController {
 		return "/board/ajaxHome";
 	}
 
+	@GetMapping(value = "/ajaxArrayHome")
+	public String ajaxArrayHome() {
+		log.info("headers 속성 매핑 ajaxArrayHome");
+		return "/board/ajaxArrayHome";
+	}
+
 	@GetMapping(value = "/xmlHttpRequest")
 	public String xmlHttpRequest() {
 		log.info("headers 속성 매핑 xmlHttpRequest");
 		return "/board/xmlHttpRequest";
 	}
-	
+
 	@GetMapping(value = "/ajaxHomeAccept")
 	public String ajaxHomeAccept() {
 		log.info("accept 속성 매핑 ajaxHomeAccept");
@@ -86,6 +94,18 @@ public class BoardController {
 	public ResponseEntity<String> modifyByHeader(@PathVariable("boardNo") int boardNo, @RequestBody Board board) {
 		log.info("수정 Header Board = " + board);
 		log.info("수정 Header Board No = " + boardNo);
+		ResponseEntity<String> entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
+		return entity;
+	}
+
+	@PostMapping("/registerArray")
+	public ResponseEntity<String> registerArray(@RequestBody List<Member> memberList) {
+		log.info(" registerArray ");
+		for (Member member : memberList) {
+			log.info("userId = " + member.getUserId());
+			log.info("passsword = " + member.getPassword());
+		}
+
 		ResponseEntity<String> entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
 		return entity;
 	}
