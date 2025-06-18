@@ -5,11 +5,13 @@ import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.zeus.domain.CheckBoxLabelValue;
+import com.zeus.domain.CodeLabelValue;
 import com.zeus.domain.User;
 
 import lombok.extern.slf4j.Slf4j;
@@ -19,43 +21,66 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("/user")
 public class UserController {
 
-	@GetMapping("/registerForm")
-	public String registerForm(Model model) {
-		log.info("registerForm");
-		User user = new User();
-		user.setUserId("텔레토비");
-		user.setUserName("보라돌이");
-		user.setUserPassword("1234");
-		user.setIntroduction("소개글");
-		ArrayList<CheckBoxLabelValue> cbList = new ArrayList<>();
-		cbList.add(new CheckBoxLabelValue("Teemo","01"));
-		cbList.add(new CheckBoxLabelValue("So","02"));
-		cbList.add(new CheckBoxLabelValue("Cute","03"));
-		model.addAttribute("cbArrayList",cbList);
-		
-		model.addAttribute("user", user);
-		return "user/registerForm";
-	}
+//	@GetMapping(value = "/registerForm")
+//	public String registerForm(Model model) {
+//		log.info("registerForm");
+//		User user = new User();
+//		user.setUserId("kimid");
+//		user.setUserName("홍길동");
+//		user.setUserPassword("123456");
+//		user.setIntroduction("스프링부트입니다.");
+//
+//		ArrayList<CheckBoxLabelValue> checkBoxList = new ArrayList<CheckBoxLabelValue>();
+//		checkBoxList.add(new CheckBoxLabelValue("스포츠", "sports"));
+//		checkBoxList.add(new CheckBoxLabelValue("영화", "movie"));
+//		checkBoxList.add(new CheckBoxLabelValue("음악", "music"));
+//
+//		model.addAttribute("hobbyBoxList", checkBoxList);
+//		model.addAttribute("user", user);
+//
+//		return "user/registerForm";
+//	}
 
 	@PostMapping(value = "/register")
-    public String register(User user) {
-        log.info("register");
-        log.info("userId =" + user.getUserId());
-        log.info("userName =" + user.getUserName());
-        log.info("userPassword =" + user.getUserPassword());
-        log.info("introdution =" + user.getIntroduction());
+	public String register(@Validated  User user, BindingResult result) {
+		log.info("register");
+		
+		if(result.hasErrors()) {
+			return "user/registerSpringFormErrors";
+		}
 
-        List<String> checkBoxList = user.getCbList();
-        if (checkBoxList != null) {
-            log.info("hobbyList != null = " + checkBoxList.size());
+		return "user/resultForm";
+	}
 
-            for (int i = 0; i < checkBoxList.size(); i++) {
-                log.info("checkBoxList(" + i + ") = " + checkBoxList.get(i));
-            }
-        } else {
-            log.info("checkBoxList == null");
-        }
+	@GetMapping(value = "/radiobuttons01")
+	public String registerSpringFormRadiobuttons01(Model model) {
+		log.info("Radiobuttons01");
+		User user = new User(); 
+		
+		List<CodeLabelValue> nationalityCodeList = new ArrayList<CodeLabelValue>();
+		nationalityCodeList.add(new CodeLabelValue("01", "Volvo"));
+		nationalityCodeList.add(new CodeLabelValue("02", "Saab"));
+		nationalityCodeList.add(new CodeLabelValue("03", "Opel"));
 
-        return "user/resultForm";
-    }
+		model.addAttribute("nationalityCodeList", nationalityCodeList);
+		user.setUserId("abc");
+		model.addAttribute("user", user);
+
+		return "user/radiobuttons01"; // 뷰 파일명
+	}
+	
+	
+	@GetMapping(value = "/registerSpringFormErrors")
+	public String registerSpringFormErrors(Model model) {
+	log.info("registerSpringFormErrors");
+
+	User user = new User();
+	user.setEmail("aaa@ccc.com"); 
+	user.setUserName("홍길동");
+	model.addAttribute("user", user);
+
+	return "user/registerSpringFormErrors";	// 뷰 파일명
+	}
+
+
 }

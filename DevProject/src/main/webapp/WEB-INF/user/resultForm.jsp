@@ -33,13 +33,16 @@
 				<td>${user.introduction}</td>
 			</tr>
 			<tr>
-                <td>취미</td>
-                <td>
-                    <c:forEach var="hobby" items="${user.cbList}">
-                        <c:out value="${hobby}" /><br>
-                    </c:forEach>
-                </td>
-            </tr>
+				<td>취미</td>
+				<td><c:forEach var="hobby" items="${user.cbList}">
+						<c:out value="${hobby}" />
+						<br>
+					</c:forEach></td>
+			</tr>
+			<tr>
+				<td>성별</td>
+				<td>${user.gender}</td>
+			</tr>
 		</table>
 	</main>
 	<hr>

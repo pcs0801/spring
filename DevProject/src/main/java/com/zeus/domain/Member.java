@@ -24,5 +24,6 @@ public class Member{
 	private Date dateOfBirth;
 	private List<String> nationality;
 	private Board board;
+	private String gender;
 	
 }

@@ -11,7 +11,7 @@ import lombok.ToString;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-public class CheckBoxLabelValue{
+public class CodeLabelValue{
 	private String label;
 	private String value;
 }
