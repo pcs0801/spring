@@ -19,16 +19,25 @@
 			<th align="center" width="150">이름</th>
 			<th align="center" width="150">등록일자</th>
 		</tr>
-		<c:forEach items="${list}" var="member">
-			<tr>
-				<td align="center">${member.no}</td>
-				<td align="center"><a href='/member/read?no=${member.no}'>${member.id}</a></td>
-				<td align="center">${member.pw}</td>
-				<td align="center">${member.name}</td>
-				<td align="center"><fmt:formatDate pattern="yyyy-MM-dd HH:mm"
-						value="${member.regDate}" /></td>
-			</tr>
-		</c:forEach>
+		<c:choose>
+			<c:when test="${empty list}">
+				<tr>
+					<td colspan="5" align="center">목록이 비어있습니다.</td>
+				</tr>
+			</c:when>
+			<c:otherwise>
+				<c:forEach items="${list}" var="member">
+					<tr>
+						<td align="center">${member.no}</td>
+						<td align="center"><a href='/member/read?no=${member.no}'>${member.id}</a></td>
+						<td align="center">${member.pw}</td>
+						<td align="center">${member.name}</td>
+						<td align="center"><fmt:formatDate pattern="yyyy-MM-dd HH:mm"
+								value="${member.regDate}" /></td>
+					</tr>
+				</c:forEach>
+			</c:otherwise>
+		</c:choose>
 	</table>
 </main>
 

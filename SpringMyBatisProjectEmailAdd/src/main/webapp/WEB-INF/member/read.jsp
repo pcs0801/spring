@@ -18,64 +18,43 @@
 				<td><form:input path="name" readonly="true" /></td>
 			</tr>
 			<tr>
-				<td>권한 - 1</td>
+				<td>권한(1)</td>
 				<td><form:select path="authList[0].auth">
-						<form:option value="" label="=== 선택해 주세요 ===" />
+						<form:option value="" label="=== 선택해주세요 ===" />
 						<form:option value="ROLE_USER" label="사용자" />
 						<form:option value="ROLE_MEMBER" label="회원" />
 						<form:option value="ROLE_ADMIN" label="관리자" />
 					</form:select></td>
 			</tr>
 			<tr>
-				<td>권한 - 2</td>
+				<td>권한(2)</td>
 				<td><form:select path="authList[1].auth">
-						<form:option value="" label="=== 선택해 주세요 ===" />
+						<form:option value="" label="=== 선택해주세요 ===" />
 						<form:option value="ROLE_USER" label="사용자" />
 						<form:option value="ROLE_MEMBER" label="회원" />
 						<form:option value="ROLE_ADMIN" label="관리자" />
 					</form:select></td>
 			</tr>
 			<tr>
-				<td>권한 - 3</td>
+				<td>권한(3)</td>
 				<td><form:select path="authList[2].auth">
-						<form:option value="" label="=== 선택해 주세요 ===" />
+						<form:option value="" label="=== 선택해주세요 ===" />
 						<form:option value="ROLE_USER" label="사용자" />
 						<form:option value="ROLE_MEMBER" label="회원" />
 						<form:option value="ROLE_ADMIN" label="관리자" />
 					</form:select></td>
 			</tr>
-						<tr>
-				<td>이메일 - 1</td>
-				<td><form:select path="emailList[0].email">
-						<form:option value="" label="=== 입력해주세요 ===" />
-						<form:option value="test1@test1.com" label="이메일테스트1" />
-						<form:option value="test2@test2.com" label="이메일테스트2" />
-						<form:option value="test3@test3.com" label="이메일테스트3" />
-					</form:select></td>
-				<td><font color="red"><form:errors
-							path="emailList[0].email" /></font></td>
+			<tr>
+				<td>이메일(1)</td>
+				<td><form:input path="emailList[0].email" readOnly="true"/>
 			</tr>
 			<tr>
-				<td>이메일 - 2</td>
-				<td><form:select path="emailList[1].email">
-						<form:option value="" label="=== 입력해주세요 ===" />
-						<form:option value="test1@test1.com" label="이메일테스트1" />
-						<form:option value="test2@test2.com" label="이메일테스트2" />
-						<form:option value="test3@test3.com" label="이메일테스트3" />
-					</form:select></td>
-				<td><font color="red"><form:errors
-							path="emailList[1].email" /></font></td>
+				<td>이메일(2)</td>
+				<td><form:input path="emailList[1].email" readOnly="true"/>
 			</tr>
 			<tr>
-				<td>이메일 - 3</td>
-				<td><form:select path="emailList[2].email">
-						<form:option value="" label="=== 입력해주세요 ===" />
-						<form:option value="test1@test1.com" label="이메일테스트1" />
-						<form:option value="test2@test2.com" label="이메일테스트2" />
-						<form:option value="test3@test3.com" label="이메일테스트3" />
-					</form:select></td>
-				<td><font color="red"><form:errors
-							path="emailList[2].email" /></font></td>
+				<td>이메일(3)</td>
+				<td><form:input path="emailList[2].email" readOnly="true"/>
 			</tr>
 		</table>
 	</form:form>

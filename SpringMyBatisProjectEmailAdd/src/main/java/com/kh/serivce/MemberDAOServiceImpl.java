@@ -38,7 +38,7 @@ public class MemberDAOServiceImpl implements MemberDAOService {
 
 		// 유저 이메일 설정
 		memberEmail.setNo(member.getNo());
-		memberEmail.setEmail("test@test.com");
+		memberEmail.setEmail("example@email.com");
 		
 		// 유저 이메일 입력
 		memberDAO.insertEmail(memberEmail);
@@ -77,9 +77,11 @@ public class MemberDAOServiceImpl implements MemberDAOService {
 			if (auth.trim().length() == 0) {
 				continue;
 			}
-			memberAuth.setNo(member.getNo());
+			memberAuth.setNo(no);
 			memberDAO.insertAuth(memberAuth);
 		}
+		
+		memberDAO.deleteEmail(member);
 
 		List<MemberEmail> emailList = member.getEmailList();
 		for (int j = 0; j < emailList.size(); j++) {
@@ -91,7 +93,7 @@ public class MemberDAOServiceImpl implements MemberDAOService {
 			if (email.trim().length() == 0) {
 				continue;
 			}
-			memberEmail.setNo(member.getNo());
+			memberEmail.setNo(no);
 			memberDAO.insertEmail(memberEmail);
 		}
 	}

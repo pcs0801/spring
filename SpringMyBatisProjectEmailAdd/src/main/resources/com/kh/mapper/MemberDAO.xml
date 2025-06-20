@@ -54,7 +54,7 @@
 	</select>
 	
 	<update id="update">
-		UPDATE MEMBER SET NAME = #{name} WHERE NO = #{no}
+		UPDATE MEMBER SET ID = #{id}, NAME = #{name} WHERE NO = #{no}
 	</update>
 	
 	<delete id="delete">

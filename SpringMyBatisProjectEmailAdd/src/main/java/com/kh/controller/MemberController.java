@@ -4,6 +4,7 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.kh.domain.Member;
 import com.kh.serivce.MemberDAOService;
 
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -30,7 +32,10 @@ public class MemberController {
 
 	// 유저 입력 처리 요청
 	@PostMapping("/register")
-	public String register(Member member, Model model) throws Exception {
+	public String register(@Valid Member member, BindingResult result, Model model) throws Exception {
+		if (result.hasErrors()) {
+			return "member/register";
+		}
 		memberDAOservice.insert(member);
 		model.addAttribute("msg", "등록 완료");
 		return "member/success";
@@ -62,7 +67,10 @@ public class MemberController {
 	}
 
 	@PostMapping("/modify")
-	public String modify(Member member, Model model) throws Exception {
+	public String modify(@Valid Member member, BindingResult result, Model model) throws Exception {
+		if (result.hasErrors()) {
+			return "member/modify";
+		}
 		memberDAOservice.update(member);
 		model.addAttribute("msg", "수정 완료");
 		return "member/success";
