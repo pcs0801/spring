@@ -21,10 +21,14 @@ import lombok.NoArgsConstructor;
 @SequenceGenerator(name = "MEMBER_SEQ_GEN", sequenceName = "MEMBER_SEQ", initialValue = 1, allocationSize = 1)
 public class Member {
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "MEMBER_SEQ_GENERATOR")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "MEMBER_SEQ_GEN")
+	@Column(length=300)
 	private int no;
+	@Column(length=500)
 	private String id;
+	@Column(length=700)
 	private String pw;
+	@Column(length=900)
 	private String name;
 	@CreationTimestamp
 	@Column(name = "REG_DATE")
