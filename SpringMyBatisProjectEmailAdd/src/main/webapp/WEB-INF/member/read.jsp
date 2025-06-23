@@ -19,7 +19,7 @@
 			</tr>
 			<tr>
 				<td>권한(1)</td>
-				<td><form:select path="authList[0].auth">
+				<td><form:select path="authList[0].auth" disabled="true">
 						<form:option value="" label="=== 선택해주세요 ===" />
 						<form:option value="ROLE_USER" label="사용자" />
 						<form:option value="ROLE_MEMBER" label="회원" />
@@ -28,8 +28,8 @@
 			</tr>
 			<tr>
 				<td>권한(2)</td>
-				<td><form:select path="authList[1].auth">
-						<form:option value="" label="=== 선택해주세요 ===" />
+				<td><form:select path="authList[1].auth" disabled="true">
+						<form:option value="" label="=== 미설정 ===" />
 						<form:option value="ROLE_USER" label="사용자" />
 						<form:option value="ROLE_MEMBER" label="회원" />
 						<form:option value="ROLE_ADMIN" label="관리자" />
@@ -37,8 +37,8 @@
 			</tr>
 			<tr>
 				<td>권한(3)</td>
-				<td><form:select path="authList[2].auth">
-						<form:option value="" label="=== 선택해주세요 ===" />
+				<td><form:select path="authList[2].auth" disabled="true">
+						<form:option value="" label="=== 미설정 ===" />
 						<form:option value="ROLE_USER" label="사용자" />
 						<form:option value="ROLE_MEMBER" label="회원" />
 						<form:option value="ROLE_ADMIN" label="관리자" />

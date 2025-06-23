@@ -14,6 +14,6 @@
 </head>
 <body>
 	<header>
-		<h1>헤헤헤더</h1>
+		<h1>HEADER</h1>
 	</header>
 	<hr>

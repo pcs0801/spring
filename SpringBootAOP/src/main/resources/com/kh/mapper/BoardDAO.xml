@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kh.mapper.BoardDAO">
+	<insert id="insert">
+		INSERT INTO AOPBOARD(NO, TITLE, CONTENT, WRITER)
+		VALUES(AOPBOARD_SEQ.NEXTVAL, #{title}, #{content}, #{writer})
+	</insert>
+	<select id="select" resultType="AOPBoard">
+		SELECT NO, TITLE, CONTENT,
+		WRITER, REG_DATE FROM AOPBOARD WHERE NO = #{no}
+	</select>
+	<update id="update">
+		UPDATE AOPBOARD SET TITLE = #{title}, CONTENT =
+		#{content}, WRITER = #{writer} WHERE NO = #{no}
+	</update>
+	<delete id="delete">
+		DELETE FROM AOPBOARD WHERE NO = #{no}
+	</delete>
+	<select id="selectAll" resultType="AOPBoard">
+	<![CDATA[ SELECT NO, TITLE, CONTENT, WRITER, REG_DATE FROM AOPBOARD WHERE NO > 0 ORDER BY NO DESC, REG_DATE DESC]]>
+	</select>
+</mapper>

@@ -54,19 +54,19 @@
 			</tr>
 			<tr>
 				<td>이메일(1)</td>
-				<td><form:input path="emailList[0].email" />
+				<td><form:input path="emailList[0].email" placeholder="이메일을 입력해주세요"/>
 				<td><font color="red"><form:errors
 							path="emailList[0].email" /></font></td>
 			</tr>
 			<tr>
 				<td>이메일(2)</td>
-				<td><form:input path="emailList[1].email" />
+				<td><form:input path="emailList[1].email" placeholder="이메일을 입력해주세요"/>
 				<td><font color="red"><form:errors
 							path="emailList[1].email" /></font></td>
 			</tr>
 			<tr>
 				<td>이메일(3)</td>
-				<td><form:input path="emailList[2].email" />
+				<td><form:input path="emailList[2].email" placeholder="이메일을 입력해주세요"/>
 				<td><font color="red"><form:errors
 							path="emailList[2].email" /></font></td>
 			</tr>

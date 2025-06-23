@@ -8,12 +8,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>유저</title>
+<title>게시판영역</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
 	<header>
-		<h1>헤헤헤더</h1>
+		<h1>게시판 영역입니다.</h1>
 	</header>
 	<hr>

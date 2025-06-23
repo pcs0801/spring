@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kh.mapper.MemberDAO">
+	<insert id="insert">
+		INSERT INTO AOPMEMBER(NO, ID, PW, NAME)
+		VALUES(AOPMEMBER_SEQ.NEXTVAL, #{id}, #{pw}, #{name})
+	</insert>
+	<select id="select" resultType="AOPMember">
+		SELECT NO, ID, PW,
+		NAME, REG_DATE FROM AOPMEMBER WHERE NO = #{no}
+	</select>
+	<update id="update">
+		UPDATE AOPMEMBER SET ID = #{id}, NAME = #{name} WHERE NO = #{no}
+	</update>
+	<delete id="delete">
+		DELETE FROM AOPMEMBER WHERE NO = #{no}
+	</delete>
+	<select id="selectAll" resultType="AOPMember">
+	<![CDATA[ SELECT NO, ID, PW, NAME, REG_DATE FROM AOPMEMBER WHERE NO > 0 ORDER BY NO DESC, REG_DATE DESC]]>
+	</select>
+</mapper>
