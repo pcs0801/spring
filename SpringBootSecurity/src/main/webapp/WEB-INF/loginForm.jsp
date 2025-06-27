@@ -20,10 +20,14 @@
 	</h2>
 	<form method="post" action="/login">
 		<div>
-			ID : <input type="text" name="username" value="">
+			<input type="text" name="username" value="">
 		</div>
 		<div>
-			PW : <input type="password" name="password" value="">
+			<input type="password" name="password" value="">
+		</div>
+		<!-- 로그인 상태유지 체크박스 -->
+		<div>
+			<input type="checkbox" name="remember-me"> 로그인 상태유지
 		</div>
 		<div>
 			<input type="submit">

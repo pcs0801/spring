@@ -14,5 +14,8 @@
 		<sec:csrfInput />
 		<button>로그아웃</button>
 	</form>
+	<div>
+		<a href="/">HOME</a>
+	</div>
 </body>
 </html>

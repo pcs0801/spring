@@ -2,4 +2,64 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kh.mapper.MemberMapper">
 
+	<resultMap type="Member" id="memberMap">
+		<id property="no" column="NO" />
+		<result property="no" column="NO" />
+		<result property="id" column="ID" />
+		<result property="pw" column="PW" />
+		<result property="name" column="NAME" />
+		<result property="regDate" column="REG_DATE" />
+		<result property="updDate" column="UPD_DATE" />
+		<collection property="authList" resultMap="authMap">
+		</collection>
+	</resultMap>
+	<resultMap type="MemberAuth" id="authMap">
+		<result property="no" column="NO" />
+		<result property="auth" column="AUTH" />
+	</resultMap>
+
+	<insert id="insert" parameterType="Member">
+		<selectKey keyProperty="no" resultType="int" order="BEFORE">
+			SELECT
+			SECURITYMEMBER_SEQ.NEXTVAL FROM DUAL
+		</selectKey>
+		INSERT INTO SECURITYMEMBER(NO, ID, PW, NAME) VALUES(#{no}, #{id}, #{pw},
+		#{name})
+	</insert>
+	
+	<insert id="insertAuth" parameterType="MemberAuth">
+		INSERT INTO
+		SECURITYMEMBER_AUTH(NO, AUTH) VALUES(#{no}, #{auth})
+	</insert>
+
+	<select id="selectAll" resultType="Member">
+		SELECT NO, ID, PW, NAME,
+		REG_DATE, UPD_DATE FROM SECURITYMEMBER ORDER BY REG_DATE DESC
+	</select>
+
+	<select id="select" resultType="Member">
+		SELECT B.ID, A.AUTH FROM SECURITYMEMBER_AUTH A, SECURITYMEMBER B WHERE A.NO = B.NO AND B.ID = #{id};
+	</select>
+	
+	<select id="selectJoin" resultMap="memberMap">
+		SELECT M.NO, ID, PW, NAME,
+		REG_DATE, UPD_DATE, AUTH
+		FROM SECURITYMEMBER M LEFT OUTER JOIN SECURITYMEMBER_AUTH A
+		ON
+		M.NO = A.NO WHERE M.ID =
+		#{id}
+	</select>
+	
+	<update id="update">
+		UPDATE SECURITYMEMBER SET NAME = #{name} WHERE NO = #{no}
+	</update>
+	
+	<delete id="delete">
+		DELETE FROM SECURITYMEMBER WHERE NO = #{no}
+	</delete>
+	
+	<delete id="deleteAuth">
+		DELETE FROM SECURITYMEMBER_AUTH WHERE NO = #{no}
+	</delete>
+
 </mapper>

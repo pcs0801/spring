@@ -13,6 +13,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
+import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 
 import com.kh.common.security.CustomAccessDeniedHandler;
 import com.kh.common.security.CustomLoginSuccessHandler;
@@ -33,10 +35,13 @@ public class SecurityConfig {
 		log.info("Security 환경설정 시작");
 		http.csrf().disable();
 
-		http.authorizeRequests().requestMatchers("/board/list").permitAll();
-		http.authorizeRequests().requestMatchers("/board/register").hasRole("MEMBER");
-		http.authorizeRequests().requestMatchers("/notice/list").permitAll();
-		http.authorizeRequests().requestMatchers("/notice/register").hasRole("ADMIN");
+		/*
+		 * http.authorizeRequests().requestMatchers("/board/list").permitAll();
+		 * http.authorizeRequests().requestMatchers("/board/register").hasRole("MEMBER")
+		 * ; http.authorizeRequests().requestMatchers("/notice/list").permitAll();
+		 * http.authorizeRequests().requestMatchers("/notice/register").hasRole("ADMIN")
+		 * ;
+		 */
 
 		// http.exceptionHandling().accessDeniedPage("/accessError");
 
@@ -46,9 +51,18 @@ public class SecurityConfig {
 
 		http.formLogin().loginPage("/login").successHandler(createAuthenticationSuccessHandler());
 
-		http.logout().logoutUrl("/logout").invalidateHttpSession(true);
+		// http.logout().logoutUrl("/logout").invalidateHttpSession(true);
+		http.logout().logoutUrl("/logout").invalidateHttpSession(true).deleteCookies("remember_me", "JSESSION_ID");
+
+		http.rememberMe().key("kh").tokenRepository(createJDBCRepository()).tokenValiditySeconds(60 * 60 * 24);
 
 		return http.build();
+	}
+
+	private PersistentTokenRepository createJDBCRepository() {
+		JdbcTokenRepositoryImpl repo = new JdbcTokenRepositoryImpl();
+		repo.setDataSource(dataSource);
+		return repo;
 	}
 
 //	@Autowired
@@ -57,12 +71,10 @@ public class SecurityConfig {
 //		auth.inMemoryAuthentication().withUser("member").password("{noop}123456").roles("MEMBER");
 //		auth.inMemoryAuthentication().withUser("admin").password("{noop}123456").roles("ADMIN", "MEMBER");
 //	}
-	@Autowired
 	public void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth.userDetailsService(createUserDetailsService()).passwordEncoder(createPasswordEncoder());
 	}
 
-	@Bean
 	public AccessDeniedHandler createAccessDeniedHandler() {
 		return new CustomAccessDeniedHandler();
 	}
@@ -71,13 +83,14 @@ public class SecurityConfig {
 	public AuthenticationSuccessHandler createAuthenticationSuccessHandler() {
 		return new CustomLoginSuccessHandler();
 	}
-	
+
 	@Bean
 	public UserDetailsService createUserDetailsService() {
-	return new CustomUserDetailsService();
+		return new CustomUserDetailsService();
 	}
+
 	@Bean
 	public PasswordEncoder createPasswordEncoder() {
-	return new CustomNoOpPasswordEncoder();
+		return new CustomNoOpPasswordEncoder();
 	}
 }

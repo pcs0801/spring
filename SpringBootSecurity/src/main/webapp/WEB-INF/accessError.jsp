@@ -12,5 +12,8 @@
 	<h2>
 		<c:out value="${msg}" />
 	</h2>
+	<div>
+		<a href="/">HOME</a>
+	</div>
 </body>
 </html>

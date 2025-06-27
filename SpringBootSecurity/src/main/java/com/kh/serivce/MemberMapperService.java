@@ -20,6 +20,9 @@ public interface MemberMapperService {
 	public List<Member> selectAll() throws Exception;
 
 	// 유저 정보(1명)
+	public Member select(Member member) throws Exception;
+
+	// 유저 정보(1명)
 	public Member selectJoin(Member member) throws Exception;
 
 	// 유저 정보 수정

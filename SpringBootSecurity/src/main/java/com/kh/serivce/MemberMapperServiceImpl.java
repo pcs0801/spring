@@ -43,6 +43,10 @@ public class MemberMapperServiceImpl implements MemberMapperService {
 	public List<Member> selectAll() throws Exception {
 		return memberMapper.selectAll();
 	}
+	
+	public Member select(Member member) throws Exception {
+		return memberMapper.select(member);
+	}
 
 	@Override
 	public Member selectJoin(Member member) throws Exception {

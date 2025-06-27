@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-@MapperScan(basePackages = "kh.com.mapper")
+@MapperScan(basePackages = "com.kh.mapper")
 @Controller
 public class LoginController {
 // 에러 메시지와 로그아웃 메시지를 파라미터로 사용한다.
