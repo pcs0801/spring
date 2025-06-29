@@ -3,6 +3,7 @@ package com.kh.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,12 +14,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.kh.common.CodeLabelValue;
+import com.kh.common.domain.CodeLabelValue;
 import com.kh.domain.Member;
 import com.kh.service.CodeService;
 import com.kh.service.MemberService;
-
-import lombok.extern.slf4j.Slf4j;
 
 @Controller
 @RequestMapping("/user")
@@ -46,9 +45,7 @@ public class MemberController {
 		if (result.hasErrors()) {
 			String groupCode = "A00";
 			List<CodeLabelValue> jobList = codeService.getCodeList(groupCode);
-
 			model.addAttribute("jobList", jobList);
-
 			return "user/register";
 		}
 
@@ -64,13 +61,13 @@ public class MemberController {
 	}
 
 	@GetMapping("/list")
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public void list(Model model) throws Exception {
 		model.addAttribute("list", service.list());
 	}
 
 	@GetMapping("/read")
 	public void read(int userNo, Model model) throws Exception {
-		// 직업코드 목록을 조회하여 뷰에 전달
 		String groupCode = "A00";
 		List<CodeLabelValue> jobList = codeService.getCodeList(groupCode);
 		model.addAttribute("jobList", jobList);
@@ -92,10 +89,33 @@ public class MemberController {
 		return "redirect:/user/list";
 	}
 
+//회원 삭제 처리, 관리자 권한을 가진 사용자만 접근이 가능
 	@PostMapping("/remove")
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public String remove(int userNo, RedirectAttributes rttr) throws Exception {
 		service.remove(userNo);
 		rttr.addFlashAttribute("msg", "SUCCESS");
 		return "redirect:/user/list";
+	}
+
+	@PostMapping("/setup")
+	public String setupAdmin(Member member, RedirectAttributes rttr) throws Exception {
+		if (service.countAll() == 0) {
+			String inputPassword = member.getUserPw();
+			member.setUserPw(passwordEncoder.encode(inputPassword));
+			member.setJob("00");
+			service.setupAdmin(member);
+			rttr.addFlashAttribute("userName", member.getUserName());
+			return "redirect:/user/registerSuccess";
+		}
+		return "redirect:/user/setupFailure";
+	}
+
+	@GetMapping("/setup")
+	public String setupAdminForm(Member member, Model model) throws Exception {
+		if (service.countAll() == 0) {
+			return "user/setup";
+		}
+		return "user/setupFailure";
 	}
 }

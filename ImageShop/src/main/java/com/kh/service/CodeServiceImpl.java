@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.kh.common.CodeLabelValue;
+import com.kh.common.domain.CodeLabelValue;
 import com.kh.mapper.CodeMapper;
 
 @Service

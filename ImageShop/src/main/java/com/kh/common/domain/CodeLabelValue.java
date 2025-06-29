@@ -1,4 +1,4 @@
-package com.kh.common;
+package com.kh.common.domain;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

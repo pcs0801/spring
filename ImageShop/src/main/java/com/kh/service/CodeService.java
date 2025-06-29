@@ -2,7 +2,7 @@ package com.kh.service;
 
 import java.util.List;
 
-import com.kh.common.CodeLabelValue;
+import com.kh.common.domain.CodeLabelValue;
 
 public interface CodeService {
 

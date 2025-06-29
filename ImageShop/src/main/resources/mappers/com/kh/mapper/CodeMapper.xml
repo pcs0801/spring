@@ -3,7 +3,7 @@
 <mapper namespace="com.kh.mapper.CodeMapper">
 
 	<select id="getCodeGroupList"
-		resultType="com.kh.common.CodeLabelValue">
+		resultType="com.kh.common.domain.CodeLabelValue">
 		SELECT GROUP_CODE AS value, GROUP_NAME AS label
 		FROM
 		CODE_GROUP WHERE USE_YN = 'Y'
@@ -11,7 +11,7 @@
 	</select>
 
 	<select id="getCodeList"
-		resultType="com.kh.common.CodeLabelValue">
+		resultType="com.kh.common.domain.CodeLabelValue">
 		SELECT GROUP_CODE AS value, CODE_NAME AS label
 		FROM
 		CODE_DETAIL

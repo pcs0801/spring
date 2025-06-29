@@ -5,6 +5,8 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<jsp:include page="/WEB-INF/views/common/header.jsp" />
+<jsp:include page="/WEB-INF/views/common/menu.jsp" />
 
 <h2>
 	<spring:message code="user.header.list" />
@@ -24,7 +26,8 @@
 	<c:choose>
 		<c:when test="${empty list}">
 			<tr>
-				<td align="center" colspan="6"><spring:message code="common.listEmpty" /></td>
+				<td align="center" colspan="6"><spring:message
+						code="common.listEmpty" /></td>
 			</tr>
 		</c:when>
 		<c:otherwise>

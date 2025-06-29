@@ -22,4 +22,8 @@ public interface MemberMapper {
 	public void delete(int userNo) throws Exception;
 
 	public void deleteAuth(int userNo) throws Exception;
+
+	public int countAll() throws Exception;
+
+	public Member readByUserId(String userId);
 }
