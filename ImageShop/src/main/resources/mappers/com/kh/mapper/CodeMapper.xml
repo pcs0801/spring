@@ -12,12 +12,10 @@
 
 	<select id="getCodeList"
 		resultType="com.kh.common.domain.CodeLabelValue">
-		SELECT GROUP_CODE AS value, CODE_NAME AS label
-		FROM
-		CODE_DETAIL
+		SELECT CODE_VALUE AS value, CODE_NAME AS label
+		FROM CODE_DETAIL
 		WHERE GROUP_CODE = #{groupCode} AND USE_YN = 'Y'
-		ORDER BY
-		SORT_SEQ
+		ORDER BY SORT_SEQ
 	</select>
 
 </mapper>

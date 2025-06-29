@@ -26,4 +26,5 @@ public interface MemberMapper {
 	public int countAll() throws Exception;
 
 	public Member readByUserId(String userId);
+	
 }

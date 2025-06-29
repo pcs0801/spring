@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Image Shop</title>
-<!-- <script type="text/javascript" src="/js/test.js"></script> -->
+
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp" />
@@ -15,6 +15,9 @@
 		<h1>
 			<spring:message code="common.homeWelcome" />
 		</h1>
+		
+		<img src="/boksilboksil.jpg">
+		
 		<P>${serverTime}</P>
 	</div>
 	<jsp:include page="/WEB-INF/views/common/footer.jsp" />

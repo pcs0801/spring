@@ -38,7 +38,7 @@
 						href='/user/read?userNo=${member.userNo}'>${member.userId}</a></td>
 					<td align="center">${member.userPw}</td>
 					<td align="center">${member.userName}</td>
-					<td align="center">${member}</td>
+					<td align="center">${member.job}</td>
 					<td align="center"><fmt:formatDate pattern="yyyy-MM-dd HH:mm"
 							value="${member.regDate}" /></td>
 				</tr>
