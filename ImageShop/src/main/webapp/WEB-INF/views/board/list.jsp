@@ -12,7 +12,7 @@
 <h2>
 	<spring:message code="board.header.list" />
 </h2>
-<sec:authorize access="hasAnyRole('ROLE_MEMBER','ROLE_ADMIN')">
+<sec:authorize access="hasRole('ROLE_MEMBER')">
 	<a href="register"><spring:message code="action.new" /></a>
 </sec:authorize>
 <table border="1">
