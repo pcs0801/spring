@@ -21,6 +21,6 @@ public class CustomLoginSuccessHandler extends SavedRequestAwareAuthenticationSu
 		CustomUser customUser = (CustomUser) authentication.getPrincipal();
 		Member member = customUser.getMember();
 		log.info("Userid = " + member.getUserId());
-		super.onAuthenticationSuccess(request, response, authentication);
+		super.onAuthenticationSuccess(request, response, authentication);	
 	}
 }
