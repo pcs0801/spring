@@ -6,12 +6,20 @@
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
 <jsp:include page="/WEB-INF/views/common/menu.jsp" />
 <h2>
 	<spring:message code="board.header.list" />
 </h2>
+<form:form modelAttribute="pgrq" method="get"
+	action="list${pgrq.toUriStringByPage(1)}">
+	<form:select path="searchType" items="${searchTypeCodeValueList}"
+		itemValue="value" itemLabel="label" />
+	<form:input path="keyword" />
+	<button id='searchBtn'>
+		<spring:message code="action.search" />
+	</button>
+</form:form>
 <sec:authorize access="hasRole('ROLE_MEMBER')">
 	<a href="register"><spring:message code="action.new" /></a>
 </sec:authorize>
@@ -34,9 +42,10 @@
 			<c:forEach items="${list}" var="board">
 				<tr>
 					<td align="center">${board.boardNo}</td>
-					<td align="center"><a
-						href='/board/read?boardNo=${board.boardNo}'>${board.title}</a></td>
-					<td align="center">${board.writer}</td>
+					<td align="left"><a
+						href="/board/read${pgrq.toUriString(pgrq.page)}&boardNo=${board.boardNo}"><c:out
+								value="${board.title}" /></a></td>
+					<td align="right">${board.writer}</td>
 					<td align="center"><fmt:formatDate pattern="yyyy-MM-dd HH:mm"
 							value="${board.regDate}" /></td>
 				</tr>
@@ -44,6 +53,18 @@
 		</c:otherwise>
 	</c:choose>
 </table>
+<div>
+	<c:if test="${pagination.prev}">
+		<a href="${pagination.startPage - 1}">&laquo;</a>
+	</c:if>
+	<c:forEach begin="${pagination.startPage }"
+		end="${pagination.endPage }" var="idx">
+</div>
+<a href="/board/list${pagination.makeQuery(idx)}">${idx}</a>
+</c:forEach>
+<c:if test="${pagination.next && pagination.endPage > 0}">
+	<a href="${pagination.endPage +1}">&raquo;</a>
+</c:if>
 <script>
 	var result = "${msg}";
 	if (result === "SUCCESS") {

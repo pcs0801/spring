@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kh.common.domain.PageRequest;
 import com.kh.domain.Board;
 import com.kh.mapper.BoardMapper;
 
@@ -20,8 +21,8 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public List<Board> list() throws Exception {
-		return mapper.list();
+	public List<Board> list(PageRequest pageRequest) throws Exception {
+		return mapper.list(pageRequest);
 	}
 
 	@Override
@@ -37,5 +38,10 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public void remove(Integer boardNo) throws Exception {
 		mapper.delete(boardNo);
+	}
+	
+	@Override
+	public int count(PageRequest pageRequest) throws Exception {
+		return mapper.count(pageRequest);
 	}
 }
