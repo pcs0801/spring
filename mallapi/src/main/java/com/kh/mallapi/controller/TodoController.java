@@ -31,7 +31,7 @@ public class TodoController {
 		TodoDTO todoDTO = TodoDTO.builder().tno(tno).build();
 		return service.get(todoDTO);
 	}
-
+	
 	@GetMapping("/list")
 	public PageResponseDTO<TodoDTO> list(PageRequestDTO pageRequestDTO) {
 		log.info(pageRequestDTO);
