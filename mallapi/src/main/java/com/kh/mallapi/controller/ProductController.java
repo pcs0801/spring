@@ -40,6 +40,11 @@ public class ProductController {
 		productDTO.setUploadFileNames(uploadFileNames);
 		log.info(uploadFileNames);
 		Long pno = productService.register(productDTO);
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 		return Map.of("result", pno);
 	}
 
