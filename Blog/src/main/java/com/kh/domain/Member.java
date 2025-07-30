@@ -25,9 +25,13 @@ public class Member {
 	private Long memberId;
 	@Column(nullable = false, unique = true, length = 100)
 	private String nickname;
+	@Column(nullable = false)
 	private String email;
+	@Column(nullable = false)
 	private String password;
+	@Column(nullable = false)
 	private String name;
+	@Column(nullable = false)
 	private String role;
 	@CreationTimestamp
 	private LocalDateTime regDate;

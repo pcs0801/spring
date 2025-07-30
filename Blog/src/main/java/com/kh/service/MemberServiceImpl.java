@@ -71,7 +71,8 @@ public class MemberServiceImpl implements MemberService {
 
 	// DTO → Entity 변환
 	private Member dtoToEntity(MemberDTO dto) {
-		return Member.builder().email(dto.getEmail()).password(dto.getPassword()).nickname(dto.getNickname()).build();
+		return Member.builder().email(dto.getEmail()).password(dto.getPassword()).nickname(dto.getNickname())
+				.name(dto.getName()).role(dto.getRole()).build();
 	}
 
 	// Entity → DTO 변환

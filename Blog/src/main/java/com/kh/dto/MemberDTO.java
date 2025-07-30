@@ -13,9 +13,9 @@ import lombok.ToString;
 @ToString
 public class MemberDTO {
 
+	private String name;
 	private String email;
 	private String nickname;
-	@JsonIgnore
 	private String password;
 	private String role;
 	private LocalDateTime regDate;
