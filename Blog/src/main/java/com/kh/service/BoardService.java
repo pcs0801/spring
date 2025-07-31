@@ -18,4 +18,6 @@ public interface BoardService {
 	List<BoardDTO> findByTitleAndContent(String title, String content);
 
 	List<BoardDTO> findByMemberNickname(String nickname);
+	
+	List<BoardDTO> findAll();
 }

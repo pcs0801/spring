@@ -23,7 +23,7 @@ public class MemberController {
 	private final MemberService memberService;
 
 	// 회원 등록 (가입)
-	@PostMapping
+	@PostMapping("/register")
 	public ResponseEntity<Long> register(@RequestBody MemberDTO memberDTO) {
 		Long memberId = memberService.register(memberDTO);
 		return ResponseEntity.ok(memberId);

@@ -50,4 +50,11 @@ public class BoardController {
 		List<BoardDTO> results = boardService.findByTitle(title);
 		return ResponseEntity.ok(results);
 	}
+	
+	// 전체 게시글 목록 조회
+	@GetMapping
+	public ResponseEntity<List<BoardDTO>> getAllBoards() {
+	    List<BoardDTO> boards = boardService.findAll();
+	    return ResponseEntity.ok(boards);
+	}
 }

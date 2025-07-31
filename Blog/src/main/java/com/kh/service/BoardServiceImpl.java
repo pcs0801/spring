@@ -11,6 +11,7 @@ import com.kh.domain.Member;
 import com.kh.dto.BoardDTO;
 import com.kh.dto.MemberDTO;
 import com.kh.repository.BoardRepository;
+import com.kh.repository.MemberRepository;
 
 import lombok.RequiredArgsConstructor;
 
@@ -19,6 +20,7 @@ import lombok.RequiredArgsConstructor;
 public class BoardServiceImpl implements BoardService {
 
 	private final BoardRepository boardRepository;
+	private final MemberRepository memberRepository;
 
 	// 게시글 등록
 	@Override
@@ -77,11 +79,23 @@ public class BoardServiceImpl implements BoardService {
 		return result.stream().map(this::entityToDTO).collect(Collectors.toList());
 	}
 
-	// DTO → Entity
+	@Override
+	public List<BoardDTO> findAll() {
+	    List<Board> result = boardRepository.findAll();
+	    return result.stream().map(this::entityToDTO).collect(Collectors.toList());
+	}
+	
 	private Board dtoToEntity(BoardDTO dto) {
+		// 이메일로 DB에서 Member 엔티티 조회
+		Member member = memberRepository.findByEmail(dto.getMember().getEmail());
+		if (member == null) {
+			throw new RuntimeException("해당 이메일의 회원이 존재하지 않습니다: " + dto.getMember().getEmail());
+		}
+
 		return Board.builder().boardId(dto.getBoardId()).title(dto.getTitle()).content(dto.getContent())
-				.writingDate(dto.getWritingDate()).updatedDate(dto.getUpdatedDate()).member(Member.builder()
-						.nickname(dto.getMember().getNickname()).email(dto.getMember().getEmail()).build())
+				.writingDate(dto.getWritingDate()) // 일반적으로 생략해도 됨 (DB에서 자동 생성)
+				.updatedDate(dto.getUpdatedDate()) // 마찬가지로 생략 가능
+				.member(member) // 실제 존재하는 Member 엔티티 연결
 				.build();
 	}
 
